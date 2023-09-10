@@ -1,0 +1,214 @@
+:root {
+	font-size: 16px;
+	font-family: "Audiowide";
+	--text-primary: #b6b6b6;
+	--text-secondary: #ececec;
+	--bg-primary: #23232e;
+	--bg-secondary: #141418;
+}
+
+body {
+	color: black;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+}
+
+body::-webkit-scrollbar {
+	width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: #6649b8;
+}
+
+main {
+	margin-left: 5rem; /*holy shit, this is amazing!!! "rem", instead of px,
+                       lets me set the font size RELATIVE to the font-size
+                       on the :root element, which is 16px. Therefore, 
+                                    5rem * 16x = 80px
+                       So the font-size of our main element, will be 5 
+                       times the 16px stated font-size given, for a total 
+                       of 80px! This is going to save so much time!!! */
+	padding: 1rem; /*And a padding of 1rem essentially lets me center my
+                       content on the viewport, REACTIVELY. omg habibi */
+}
+
+.navbar {
+	width: 5rem;
+	height: 100vh; /*vh is just like rem, but it's relative to the size
+                       of the VIEWPORT. 100 will always fill up 100% of the
+                       height and will react accordingly if we change the 
+                       size of the browser window! Absolutely incredible*/
+	position: fixed;
+	background-color: var(--bg-primary);
+	transition: width 200ms ease;
+}
+
+.navbar-nav {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex; /*This turns the parent container class, the ul, into a FLEXBOX.*/
+	flex-direction: column; /* This forces our new flexbox to flex into a column, instead of it's default row.*/
+	align-items: center; /* When you have a COLUMN, your cross-axis runs horizontally so we can align our items in the middle with the align-items: property */
+	height: 100%;
+}
+
+nav.item {
+	width: 100%; /* This lets us set the maximum width of our icons to always be 100% of it's parent container, our .navbar.nav*/
+}
+
+.nav-link {
+	display: flex;
+	align-items: center;
+	height: 7rem;
+	color: var(--text-primary);
+	text-decoration: none;
+	filter: grayscale(100%) opacity(0.5);
+	transition: var(--transition-speed);
+}
+
+.nav-link:hover {
+	filter: grayscale(0%) opacity(1);
+	background: var(--bg-secondary);
+}
+
+.link-text {
+	display: none;
+	margin-left: 1rem;
+}
+
+/* This line makes the icons come back!!!!!!!!! */
+.nav-link svg {
+	min-width: 3rem;
+	margin: 1 3rem;
+}
+
+.navbar:hover {
+	width: 17rem; /* When we hover over the bar, it pops out to a width of 16 times the size of our stated font-size? */
+}
+
+.navbar:hover .link-text {
+	display: block;
+}
+
+.fa-primary {
+	color: #16dd48;
+}
+
+.fa-secondary {
+	color: #4edf49;
+}
+
+.fa-primary,
+.fa-secondary {
+	transition: var(--transition-speed);
+}
+
+.logo {
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+	text-align: center;
+	color: var(--text-secondary);
+	background: var(--bg-secondary);
+	font-size: 1.3rem;
+	letter-spacing: 0.3ch;
+	width: 100%;
+}
+
+.logo svg {
+	transform: rotate(0deg);
+	transition: var(--transition-speed);
+}
+
+.logo-text {
+	display: inline;
+	position: absolute;
+	left: -999px;
+	transition: var(--transition-speed);
+}
+
+.navbar:hover .logo svg {
+	transform: rotate(-180deg);
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+	.navbar {
+		bottom: 0;
+		width: 100vw;
+		height: 5rem;
+	}
+
+	.logo {
+		display: none;
+	}
+
+	.navbar-nav {
+		flex-direction: row;
+	}
+
+	.nav-link {
+		justify-content: center;
+	}
+
+	main {
+		margin: 0;
+	}
+}
+
+/* Large screens */
+@media only screen and (min-width: 600px) {
+	.navbar {
+		top: 0;
+		width: 5rem;
+		height: 100vh;
+	}
+
+	.navbar:hover {
+		width: 16rem;
+	}
+
+	.navbar:hover .link-text {
+		display: inline;
+	}
+
+	.navbar:hover .logo svg {
+		margin-left: 11rem;
+	}
+
+	.navbar:hover .logo-text {
+		left: 0px;
+	}
+}
+
+.dark {
+	--text-primary: #b6b6b6;
+	--text-secondary: #ececec;
+	--bg-primary: #23232e;
+	--bg-secondary: #141418;
+}
+
+.light {
+	--text-primary: #1f1f1f;
+	--text-secondary: #000000;
+	--bg-primary: #ffffff;
+	--bg-secondary: #e4e4e4;
+}
+
+.solar {
+	--text-primary: #576e75;
+	--text-secondary: #35535c;
+	--bg-primary: #fdf6e3;
+	--bg-secondary: #f5e5b8;
+}
+
+.theme-icon {
+	display: none;
+}
